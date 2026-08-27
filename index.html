@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>WA Rotator (Debug)</title>
+    <script>
+        function rotate() {
+            try {
+                console.log("[WA Rotator] rotate() dipanggil");
+
+                const numbers = [
+                    "6285183110998",  // ...998  -> Mbak Nadhifa
+                    "6281227251207", // ...207 -> Mba Lifa
+                    
+                ];
+
+                let index = localStorage.getItem("wa_index");
+                console.log("[WA Rotator] index dari localStorage:", index);
+
+                if (index === null) {
+                    index = 0;
+                } else {
+                    index = (parseInt(index, 10) + 1) % numbers.length;
+                }
+                localStorage.setItem("wa_index", index);
+                console.log("[WA Rotator] index terpilih:", index);
+
+                const selected = numbers[index];
+                console.log("[WA Rotator] nomor terpilih:", selected);
+
+                const lastTwo = selected.slice(-2);
+                const lastThree = selected.slice(-3);
+                console.log("[WA Rotator] lastTwo:", lastTwo, "| lastThree:", lastThree);
+
+                let message = "";
+                if (lastTwo === "98") {
+                    message = "Halo mbak Nadhifa [OI] saya mau tanya info rumah yang ada di Instagram official?";
+                } else if (lastThree === "207") {
+                    message = "Halo mbak Lifa [OI] saya mau tanya info rumah yang ada di Instagram official?";
+        
+                } else {
+                    message = "Halo kak [OI], saya mau tanya unitnya";
+                }
+                console.log("[WA Rotator] pesan:", message);
+
+                const encoded = encodeURIComponent(message);
+                const waUrl = "https://wa.me/" + selected + "?text=" + encoded;
+                console.log("[WA Rotator] URL tujuan:", waUrl);
+
+                document.getElementById("manual-link").href = waUrl;
+                document.getElementById("status").innerText = "Redirect ke: " + selected;
+
+                window.location.href = waUrl;
+
+            } catch (err) {
+                // Kalau ada error apapun, tampilkan di layar (bukan cuma di console)
+                // supaya kamu langsung lihat pesan errornya tanpa perlu buka DevTools.
+                console.error("[WA Rotator] ERROR:", err);
+                document.getElementById("status").innerText =
+                    "Terjadi error: " + err.message + " (screenshot ini dan kirim ke developer)";
+            }
+        }
+    </script>
+</head>
+<body onload="rotate()">
+    <p id="status">Redirecting...</p>
+    <a id="manual-link" href="#">Klik di sini jika tidak otomatis terarahkan</a>
+</body>
+</html>
