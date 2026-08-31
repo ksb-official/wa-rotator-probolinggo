@@ -9,10 +9,9 @@
                 console.log("[WA Rotator] rotate() dipanggil");
 
                 const numbers = [
-                    "6285258460123",  // ...23  -> Mbak Diana
-                    "6281232631641", // ...641 -> Mbak Rehana
-                    
-                    
+                    "628816384919",  // ...19  -> Mbak Nanik
+                    "6285743627297", // ...297 -> Mbak Laudia
+                    "6282339712997", // ...997 -> Mbak Anggia
                 ];
 
                 let index = localStorage.getItem("wa_index");
@@ -34,11 +33,12 @@
                 console.log("[WA Rotator] lastTwo:", lastTwo, "| lastThree:", lastThree);
 
                 let message = "";
-                if (lastTwo === "23") {
-                    message = "Halo mbak Diana [OI] saya mau tanya info rumah yang ada di Instagram official?";
-                } else if (lastThree === "641") {
-                    message = "Halo mbak Rehana [OI] saya mau tanya info rumah yang ada di Instagram official?";
-                    
+                if (lastTwo === "19") {
+                    message = "Halo mbak Nanik [OI] saya mau tanya info rumah yang ada di Instagram official?";
+                } else if (lastThree === "297") {
+                    message = "Halo mbak Laudia [OI] saya mau tanya info rumah yang ada di Instagram official?";
+                } else if (lastThree === "997") {
+                    message = "Halo mbak Anggia [OI] saya mau tanya info rumah yang ada di Instagram official?";
                 } else {
                     message = "Halo kak [OI], saya mau tanya unitnya";
                 }
